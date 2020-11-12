@@ -1,0 +1,6 @@
+def startBoard():
+    m=[['W', 'W', 'W', 'W', 'W']]
+    m=m*5
+    return m
+print startBoard()
+
