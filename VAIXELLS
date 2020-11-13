@@ -4,3 +4,12 @@ def startBoard():
     return m
 print startBoard()
 
+def showBoard(b):
+    result = ""
+    for element in b:
+        for subelement in element:
+            result = result + subelement
+        print result
+        result = "" 
+print showBoard([['W','W','W','W','W'], ['W','W','W','W','W'], ['W','W','W','W','W'], ['W','W','W','W','W'], ['W','W','W','W','W']])
+
