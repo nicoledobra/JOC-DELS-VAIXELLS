@@ -15,3 +15,13 @@ def final(b):
     b1 = [['W', 'W', 'W', 'W', 'W'], ['X', 'X', 'X', 'X', 'X'], ['O', 'O', 'O', 'O', 'O'], ['W', 'W', 'W', 'W', 'W'], ['W', 'W', 'W', 'W', 'W']]
     b2 = [['W', 'W', 'W', 'W', 'W'], ['W', 'W', 'S', 'W', 'W'], ['W', 'W', 'W', 'W', 'W'], ['W', 'W', 'W', 'W', 'W'], ['W', 'W', 'W', 'W', 'W']]
     return b1==b
+
+import string
+def thereIsNoNumber(s):
+    result=string.digits
+    i=0
+    for restul in s:
+        if restul==s[i] and restul==s[len(s)-1]:
+            return False
+        else:
+            return True
