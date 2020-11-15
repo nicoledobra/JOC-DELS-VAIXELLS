@@ -34,8 +34,9 @@ def thereIsNoNumber(s):
     result=string.digits
     i=0
     for restul in s:
-        if restul==s[i] and restul==s[len(s)-1]:
-            return False
-        else:
+        if s[i] not in restul or s[len(s)-1] not in restul:
             return True
+        else:
+            return False
 print thereIsNoNumber("2b:2c2")
+
