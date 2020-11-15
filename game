@@ -20,8 +20,7 @@ import string
 def thereIsNoNumber(s):
     result=string.digits
     i=0
-    for restul in s:
-        if restul==s[i] and restul==s[len(s)-1]:
-            return False
-        else:
-            return True
+    if s[i] not in result or s[len(s)-1] not in result:
+        return True
+    return False
+print thereIsNoNumber("2:2")
