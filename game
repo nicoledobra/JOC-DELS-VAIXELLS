@@ -41,4 +41,32 @@ def someBoxOccupied(b, x, y, o):
         else:
             return True
 print someBoxOccupied([["W", "W", "W", "W", "W"], ["X", "X", "X", "X", "W"], ["O", "O", "O", "O", "W"], ["W", "W", "W", "W", "W"], ["W", "W", "W", "W", "W"]], 4, 4, "V")
+
+def applyPlay(b, shoot):
+    i=shoot.split(":")
+    if b[int(i[0])][int(i[1])]=="X" or b[int(i[0])][int(i[1])]=="O":
+        print "This box has already been played! You've missed a shot!"
+        return b
+    elif b[int(i[0])][int(i[1])]=="S":
+        print "IMPACT!"
+        b[int(i[0])][int(i[1])]="O"
+        return b
+    else:
+        print "WATER!"
+        b[int(i[0])][int(i[1])]="X"
+        return b
+print applyPlay([["W", "W", "W", "W", "W"], ["X", "X", "X", "X", "X"], ["O", "O", "O", "O", "O"], ["W", "W", "W", "W", "W"], ["W", "W", "W", "W", "W"]], "3:0")
+
+def wrongPosition(position):
+    if ":" not in position:
+        return True
+    i=position.split(":")
+    if i[0] not in "01234" and i[1] not in "01234":
+        return True
+    else:
+        if int(i[0])>4 or int(i[1])>4:
+            return True
+        else:
+            return False
+print wrongPosition("1:2")
     
