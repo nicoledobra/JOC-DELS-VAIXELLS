@@ -70,3 +70,12 @@ def wrongPosition(position):
             return False
 print wrongPosition("1:2")
     
+def getOrientation():
+    i=raw_input("Would you like to place the boat vertically or horizontally? (v / h)")
+    i=i.upper()
+    while i!="H" and i!="V":
+        print "Sorry, this in not a valid option."
+        i=raw_input("Would you like to place the boat vertically or horizontally? (v / h)")
+        i=i.upper()
+    return i
+print getOrientation()
