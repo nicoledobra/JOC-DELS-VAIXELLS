@@ -24,3 +24,21 @@ def thereIsNoNumber(s):
         return True
     return False
 print thereIsNoNumber("2:2")
+
+def someBoxOccupied(b, x, y, o):
+    if x>=3 and o=="V":
+        return True
+    elif y>=3 and o=="H":
+        return True
+    if o=="V":
+        if b[x][y]=="W" and b[x+1][y]=="W" and b[x+2][y]=="W":
+            return False
+        else:
+            return True
+    elif o=="H":
+        if b[x][y]=="W" and b[x][y+1]=="W" and b[x][y+2]=="W":
+            return False
+        else:
+            return True
+print someBoxOccupied([["W", "W", "W", "W", "W"], ["X", "X", "X", "X", "W"], ["O", "O", "O", "O", "W"], ["W", "W", "W", "W", "W"], ["W", "W", "W", "W", "W"]], 4, 4, "V")
+    
