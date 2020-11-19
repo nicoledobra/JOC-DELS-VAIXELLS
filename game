@@ -88,3 +88,11 @@ def getPosition():
         i=raw_input("Initial box [row:column from 0 to 4]:")
     return i
 print getPosition()
+
+def getPosition():
+    i=raw_input("Initial box [row:column from 0 to 4]:")
+    while wrongPosition(i):
+        print "Sorry, this is not a valid position."
+        i=raw_input("Initial box [row:column from 0 to 4]:")
+    return i
+print getPosition()
