@@ -40,3 +40,97 @@ def thereIsNoNumber(s):
             return False
 print thereIsNoNumber("2b:2c2")
 
+def someBoxOccupied(b, x, y, o):
+    if x>=3 and o=="V":
+        return True
+    elif y>=3 and o=="H":
+        return True
+    if o=="V":
+        if b[x][y]=="W" and b[x+1][y]=="W" and b[x+2][y]=="W":
+            return False
+        else:
+            return True
+    elif o=="H":
+        if b[x][y]=="W" and b[x][y+1]=="W" and b[x][y+2]=="W":
+            return False
+        else:
+            return True
+
+def applyPlay(b, shoot):
+    i=shoot.split(":")
+    if b[int(i[0])][int(i[1])]=="X" or b[int(i[0])][int(i[1])]=="O":
+        print "This box has already been played! You've missed a shot!"
+        return b
+    elif b[int(i[0])][int(i[1])]=="S":
+        print "IMPACT!"
+        b[int(i[0])][int(i[1])]="O"
+        return b
+    else:
+        print "WATER!"
+        b[int(i[0])][int(i[1])]="X"
+        return b
+
+def wrongPosition(position):
+    if ":" not in position:
+        return True
+    i=position.split(":")
+    if i[0] not in "01234" and i[1] not in "01234":
+        return True
+    else:
+        if int(i[0])>4 or int(i[1])>4:
+            return True
+        else:
+            return False
+    
+def getOrientation():
+    i=raw_input("Would you like to place the boat vertically or horizontally? (v / h)")
+    i=i.upper()
+    while i!="H" and i!="V":
+        print "Sorry, this in not a valid option."
+        i=raw_input("Would you like to place the boat vertically or horizontally? (v / h)")
+        i=i.upper()
+    return i
+
+def getPosition():
+    i=":"
+    i=raw_input("Initial box [row:column from 0 to 4]:")
+    while i>"0:2":
+        print "Sorry, this is not a valid position."
+        i=raw_input("Initial box [row:column from 0 to 4]:")
+    return i
+
+def getPosition():
+    i=raw_input("Initial box [row:column from 0 to 4]:")
+    while wrongPosition(i):
+        print "Sorry, this is not a valid position."
+        i=raw_input("Initial box [row:column from 0 to 4]:")
+    return i
+
+def placeShip3(b, i):
+    pos=getPosition()
+    va=pos.split(":")
+    x=int(va[0])
+    y=int(va[1])
+    o=getOrientation()
+    while someBoxOccupied(b, x, y ,o):
+        print "Sorry, some of the positions where you want to place this ship is already occupied or does not exist. Try again"
+        pos=getPosition()
+        va=pos.split(":")
+        x=int(va[0])
+        y=int(va[1])
+        o=getOrientation()
+    if o=="V":
+        b[x][y]="S"
+        b[x+1][y]="S"
+        b[x+2][y]="S"
+    else:
+        b[x][y]="S"
+        b[x][y+1]="S"
+        b[x][y+2]="S"
+    return b
+def placeShips(b):
+    print "You have 3 boats of 3 positions"
+    for i in range(1, 4):
+        b=placeShip3(b, i)
+    return b
+print placeShips()
