@@ -96,3 +96,27 @@ def getPosition():
         i=raw_input("Initial box [row:column from 0 to 4]:")
     return i
 print getPosition()
+
+def placeShip3(b, i):
+    pos=getPosition()
+    va=pos.split(":")
+    x=int(va[0])
+    y=int(va[1])
+    o=getOrientation()
+    while someBoxOccupied(b, x, y ,o):
+        print "Sorry, some of the positions where you want to place this ship is already occupied or does not exist. Try again"
+        pos=getPosition()
+        va=pos.split(":")
+        x=int(va[0])
+        y=int(va[1])
+        o=getOrientation()
+    if o=="V":
+        b[x][y]="S"
+        b[x+1][y]="S"
+        b[x+2][y]="S"
+    else:
+        b[x][y]="S"
+        b[x][y+1]="S"
+        b[x][y+2]="S"
+    return b
+print placeShip3([["W", "W", "W", "W", "W"], ["W", "W", "W", "W", "W"], ["W", "W", "W", "W", "W"], ["W", "W", "W", "W", "W"], ["W", "W", "W", "W", "W"]], 1)
