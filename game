@@ -2,7 +2,6 @@ def startBoard():
     m=[['W', 'W', 'W', 'W', 'W']]
     m=m*5
     return m
-
 def showBoard(b):
     result = ""
     for element in b:
@@ -10,12 +9,10 @@ def showBoard(b):
             result = result + subelement
         print result
         result = "" 
-
 def final(b):
     b1 = [['W', 'W', 'W', 'W', 'W'], ['X', 'X', 'X', 'X', 'X'], ['O', 'O', 'O', 'O', 'O'], ['W', 'W', 'W', 'W', 'W'], ['W', 'W', 'W', 'W', 'W']]
     b2 = [['W', 'W', 'W', 'W', 'W'], ['W', 'W', 'S', 'W', 'W'], ['W', 'W', 'W', 'W', 'W'], ['W', 'W', 'W', 'W', 'W'], ['W', 'W', 'W', 'W', 'W']]
     return b1==b
-
 import string
 def thereIsNoNumber(s):
     result=string.digits
@@ -23,8 +20,6 @@ def thereIsNoNumber(s):
     if s[i] not in result or s[len(s)-1] not in result:
         return True
     return False
-print thereIsNoNumber("2:2")
-
 def someBoxOccupied(b, x, y, o):
     if x>=3 and o=="V":
         return True
@@ -40,8 +35,6 @@ def someBoxOccupied(b, x, y, o):
             return False
         else:
             return True
-print someBoxOccupied([["W", "W", "W", "W", "W"], ["X", "X", "X", "X", "W"], ["O", "O", "O", "O", "W"], ["W", "W", "W", "W", "W"], ["W", "W", "W", "W", "W"]], 4, 4, "V")
-
 def applyPlay(b, shoot):
     i=shoot.split(":")
     if b[int(i[0])][int(i[1])]=="X" or b[int(i[0])][int(i[1])]=="O":
@@ -55,8 +48,6 @@ def applyPlay(b, shoot):
         print "WATER!"
         b[int(i[0])][int(i[1])]="X"
         return b
-print applyPlay([["W", "W", "W", "W", "W"], ["X", "X", "X", "X", "X"], ["O", "O", "O", "O", "O"], ["W", "W", "W", "W", "W"], ["W", "W", "W", "W", "W"]], "3:0")
-
 def wrongPosition(position):
     if ":" not in position:
         return True
@@ -67,9 +58,7 @@ def wrongPosition(position):
         if int(i[0])>4 or int(i[1])>4:
             return True
         else:
-            return False
-print wrongPosition("1:2")
-    
+            return False    
 def getOrientation():
     i=raw_input("Would you like to place the boat vertically or horizontally? (v / h)")
     i=i.upper()
@@ -78,25 +67,12 @@ def getOrientation():
         i=raw_input("Would you like to place the boat vertically or horizontally? (v / h)")
         i=i.upper()
     return i
-print getOrientation()
-
-def getPosition():
-    i=":"
-    i=raw_input("Initial box [row:column from 0 to 4]:")
-    while i>"0:2":
-        print "Sorry, this is not a valid position."
-        i=raw_input("Initial box [row:column from 0 to 4]:")
-    return i
-print getPosition()
-
 def getPosition():
     i=raw_input("Initial box [row:column from 0 to 4]:")
     while wrongPosition(i):
         print "Sorry, this is not a valid position."
         i=raw_input("Initial box [row:column from 0 to 4]:")
     return i
-print getPosition()
-
 def placeShip3(b, i):
     pos=getPosition()
     va=pos.split(":")
@@ -119,4 +95,8 @@ def placeShip3(b, i):
         b[x][y+1]="S"
         b[x][y+2]="S"
     return b
-print placeShip3([["W", "W", "W", "W", "W"], ["W", "W", "W", "W", "W"], ["W", "W", "W", "W", "W"], ["W", "W", "W", "W", "W"], ["W", "W", "W", "W", "W"]], 1)
+def placeShips(b):
+    print "You have 3 boats of 3 positions"
+    for i in range(1, 4):
+        b=placeShip3(b, i)
+    return b
