@@ -100,3 +100,49 @@ def placeShips(b):
     for i in range(1, 4):
         b=placeShip3(b, i)
     return b
+
+def game():
+    
+    i=startBoard()
+    t=chooseLetterPlayer()
+    player=chooseInitialPlayer()
+    turno=1
+    if player=="Computer":
+        letra=t[1]
+    else:
+        letra=t[0]
+    drawBoard(i, turno)
+    menu()
+    statistics(wg, lg, tg)
+    while not isAWonPlay(i, letra) and not fullBoard(i):
+        if player=="Player":
+            jugada=play(i)
+            i=applyPlay(player, i, letra, jugada)
+            drawBoard(i, turno)
+            if isAWonPlay(i, letra):
+                print "You are the winner"
+                wg=wg+1
+            elif fullBoard(i):
+                print "Empate"
+                tg=tg+1
+            else:
+                player="Computer"
+                letra=t[1]
+                turno=turno+1
+                lg=lg+1
+        else:
+            jugada=randomPlay(i)
+            i=applyPlay(player, i, letra, jugada)
+            drawBoard(i, turno)
+            if isAWonPlay(i, letra):
+                print "Computer are the winer"
+                lg=lg+1
+            elif fullBoard(i):
+                print "Empate"
+                tg=tg+1
+            else:
+                player="Player"
+                letra=t[0]
+                turno=turno+1
+                wg=wg+1
+game()
