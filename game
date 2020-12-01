@@ -111,7 +111,7 @@ def game():
         letra=t[1]
     else:
         letra=t[0]
-    drawBoard(i, turno)
+    showBoard(b)
     menu()
     statistics(wg, lg, tg)
     while not isAWonPlay(i, letra) and not fullBoard(i):
