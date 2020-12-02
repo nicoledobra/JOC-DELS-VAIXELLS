@@ -102,47 +102,30 @@ def placeShips(b):
     return b
 
 def game():
-    
+    n=startBoard()
     i=startBoard()
-    t=chooseLetterPlayer()
-    player=chooseInitialPlayer()
-    turno=1
-    if player=="Computer":
-        letra=t[1]
+    print "Welcome to the boat game"
+    n=placeShips(n)
+    i=placeShips(i)
+    showBoard(n)
+    showBoard(i)
+    while not final(n) and not final(i):
+        m=raw_input("select the box to shoot to player a(fila:columna 0 to 4): ")
+        while thereIsNoNumber(m):
+            print "Invalid position"
+            m=raw_input("select the box to shoot to player a(fila:columna 0 to 4): ")
+        n=applyPlay(n, m)
+        showBoard(n)
+        if not final(n):
+            m=raw_input("select the box to shoot to player b(fila:columna 0 to 4): ")
+            while thereIsNoNumber(m):
+                print "Invalid position"
+                m=raw_input("select the box to shoot to player b(fila:columna 0 to 4): ")
+            i=applyPlay(i, m)
+            showBoard(i)
+    if final(n):
+        print "congratulation player a"
     else:
-        letra=t[0]
-    showBoard(b)
-    menu()
-    statistics(wg, lg, tg)
-    while not isAWonPlay(i, letra) and not fullBoard(i):
-        if player=="Player":
-            jugada=play(i)
-            i=applyPlay(player, i, letra, jugada)
-            drawBoard(i, turno)
-            if isAWonPlay(i, letra):
-                print "You are the winner"
-                wg=wg+1
-            elif fullBoard(i):
-                print "Empate"
-                tg=tg+1
-            else:
-                player="Computer"
-                letra=t[1]
-                turno=turno+1
-                lg=lg+1
-        else:
-            jugada=randomPlay(i)
-            i=applyPlay(player, i, letra, jugada)
-            drawBoard(i, turno)
-            if isAWonPlay(i, letra):
-                print "Computer are the winer"
-                lg=lg+1
-            elif fullBoard(i):
-                print "Empate"
-                tg=tg+1
-            else:
-                player="Player"
-                letra=t[0]
-                turno=turno+1
-                wg=wg+1
+        print "congratulation player b"
+
 game()
